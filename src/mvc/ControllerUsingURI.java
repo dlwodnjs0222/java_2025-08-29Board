@@ -69,21 +69,17 @@ public class ControllerUsingURI extends HttpServlet {
 	}
 	
 	private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String command = request.getParameter("cmd");
-//		CommandHandler handler = commandHandlerMap.get(command);
-//		String viewPage = null;
-		
 		String command = request.getRequestURI();
-		if(command.indexOf(request.getContextPath()) == 0) {
+		if (command.indexOf(request.getContextPath()) == 0) {
 			command = command.substring(request.getContextPath().length());
 			System.out.println(command);
 		}
 		
 		CommandHandler handler = commandHandlerMap.get(command);
 		
-		if(handler == null) {
-			handler = new NullHandler();
-		}
+		if (handler == null) {
+            handler = new NullHandler();
+        }
 		
 		String viewPage = null;
 		
